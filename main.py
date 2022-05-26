@@ -80,9 +80,7 @@ def change_pass(i):  # calling for a new function
     print(password)
     print(users)
 
-
-
-    # generate password
+# generate password
 def generate_password():
 
     random.shuffle(characters)
