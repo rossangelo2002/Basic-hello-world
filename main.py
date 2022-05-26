@@ -35,16 +35,16 @@ def sign_in():
                     change_pass(i)
                 elif action == "L":
                     status = "Screen"
+                    tries = 3
                 elif action == "E":
                     action = "E"
                 # change_pass()
 
 
-            else:
-                tries += 1
-                print("The email/password that you've entered is incorrect.")
+        if status != "Home" and status != "Screen":
+            tries += 1
+            print("The email/password that you've entered is incorrect.")
 
-# def logout():
 
 
 
@@ -75,11 +75,10 @@ def register():
 # change password
 def change_pass(i):  # calling for a new function
     newpassword = input("Enter new password: ").lower()
-    users[i]['password'] = newpassword
+    users[i]["password"] = newpassword
     password = ("New password: " + newpassword)
     print(password)
     print(users)
-
 
 
 
