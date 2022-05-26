@@ -13,7 +13,7 @@ password = ""
 def sign_in():
     global status
     status = "Sign"
-    print("Sign In Page")
+    print("\nSign In Page")
     tries = 0
 
     while status != "Home" and tries != 3:
@@ -27,33 +27,28 @@ def sign_in():
             if users[i]['email'] == signInEmail and users[i]['password'] == signInPassword:
                 status = "Home"
                 print("\n/***************************************/")
-                print("Welcome " + firstName + " " + lastName)
+                print("          Welcome " + firstName + " " + lastName)
                 print("/***************************************/")
                 print("\nPress\n[C]hange password\n[L]og out\n[E]xit")
                 action = input("Action: ").upper()
                 if action == "C":
                     change_pass(i)
                 elif action == "L":
+                    print("\"You have been logout.\"")
                     status = "Screen"
                     tries = 3
                 elif action == "E":
                     action = "E"
                 # change_pass()
 
-
         if status != "Home" and status != "Screen":
             tries += 1
             print("The email/password that you've entered is incorrect.")
 
-
-
-
-
-
 def register():
     global status, firstName, lastName, email, password
     status = "Register"
-    print("Registration Page")
+    print("\nRegistration Page")
     firstName = input("Enter First name: ").lower()
     lastName = input("Enter Last name: ").lower()
     email = generate_email(firstName, lastName)
@@ -65,7 +60,7 @@ def register():
     print("Email: " + email)
     print("Password: " + password)
     print("/***************************************/")
-
+    print("\nAccounts: ")
     x = {"email": email,
          "password": password}
 
@@ -78,6 +73,7 @@ def change_pass(i):  # calling for a new function
     users[i]["password"] = newpassword
     password = ("New password: " + newpassword)
     print(password)
+    print("\nAccounts: ")
     print(users)
 
 # generate password
