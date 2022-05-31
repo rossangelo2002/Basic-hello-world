@@ -21,20 +21,18 @@ def sign_in():
         # print(password)
         signInEmail = input("Enter Email: ")
         signInPassword = input("Enter Password: ")
-
         for i in range(len(users)):
-            # print(users[i][0])
-            if users[i]['email'] == signInEmail and users[i]['password'] == signInPassword:
+            if users[i]['email'] == signInEmail and users[i]["password"] == signInPassword:
                 status = "Home"
                 print("\n/***************************************/")
-                print("          Welcome " + firstName + " " + lastName)
+                print("Welcome " + users[i]["firstName"] + " " + users[i]["lastName"])
                 print("/***************************************/")
-                print("\nPress\n[C]hange password\n[L]og out\n[E]xit")
+                print("\nWelcome to My University\nPress\n[C]hange password\n[L]og out\n[E]xit")
                 action = input("Action: ").upper()
                 if action == "C":
                     change_pass(i)
                 elif action == "L":
-                    print("\"You have been logout.\"")
+                    print("\"You have been log out.\"")
                     status = "Screen"
                     tries = 3
                 elif action == "E":
@@ -51,32 +49,33 @@ def register():
     print("\nRegistration Page")
     firstName = input("Enter First name: ").lower()
     lastName = input("Enter Last name: ").lower()
-    email = generate_email(firstName, lastName)
-    password = generate_password()
     print("\n/***************************************/")
     print("Success! Please save the information below: ")
     print("First Name: " + firstName)
-    print("Last Name: " + lastName)
-    print("Email: " + email)
-    print("Password: " + password)
+    print("First Name: " + lastName)
+    print("Email: " + generate_email(firstName, lastName))
+    print("Password: " + generate_password())
     print("/***************************************/")
     print("\nAccounts: ")
+# now let's add objects
     x = {"email": email,
-         "password": password}
-
+         "password": password,
+         "firstName": firstName,
+         "lastName": lastName}
+    
     users.append(x)
     print(users)
 
-# change password
-def change_pass(i):  # calling for a new function
-    newpassword = input("Enter new password: ").lower()
+
+def change_pass(i):
+    newpassword = input("Enter newpassword: ").lower()
     users[i]["password"] = newpassword
     password = ("New password: " + newpassword)
     print(password)
     print("\nAccounts: ")
     print(users)
 
-# generate password
+# generate_password()
 def generate_password():
 
     random.shuffle(characters)
@@ -91,20 +90,17 @@ def generate_password():
     return password
 
 
-def generate_email(fname, lname):
+def generate_email(fname,lname):
     global email
     email = fname+lname+"@university.com"
-    return email
-
+    return fname+lname+"@university.com"
 
 global users
 users = []
 
-
 action = "S"
 
 while action != "E":
-
     status = "Screen"
     print("\nWelcome to My University\nPress\n[R]egister\n[S]ign in\n[E]xit")
     action = input("Action: ").upper()
